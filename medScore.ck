@@ -1,0 +1,9 @@
+Machine.add("gamelanClass.ck");
+Machine.add("meditation.ck:0");
+Machine.add("meditation.ck:1");
+Machine.add("meditation.ck:2");
+Machine.add("meditation.ck:3");
+Machine.add("meditation.ck:4");
+Machine.add("meditation.ck:4");
+Machine.add("meditation.ck:5");
+Machine.add("meditation.ck:5");
