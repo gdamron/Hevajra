@@ -1,6 +1,7 @@
 // argument variables 
 int INSTR;
 float AMP;
+GAMELAN gam;
 
 if (me.args())
 {
@@ -12,15 +13,15 @@ fun void Phrase (int instr, int amp)
 	// OR create a MIDI out object
 	MidiOut mout;
 	MidiMsg msg;
-	mout.open(0);
-	if (!mout.open(0)) {me.exit();}
+	//mout.open(0);
+	//if (!mout.open(0)) {me.exit();}
 	128 => msg.data1;
 	0 => msg.data2;
 	0 => msg.data3;
-	mout.send(msg);
+	//mout.send(msg);
     
     // set random panning and amplitude
-    Math.rand2(0, 1) => int lr; 
+    Math.random2(0, 1) => int lr; 
 	amp => int prevAmp;
 	115 => int ampOut; 
 	0 => int velCount;
@@ -59,48 +60,49 @@ fun void Phrase (int instr, int amp)
 				[2, 1, 3, 2, 1, 3, 4, 5] @=> int motif[];
 				scale[motif[i%8]] => freq;
 				0 => oct;
+                gam.jegogan(freq, amp, drt);
 			} else if (currentInstr == "jub") {
 				//-0.5+lr => p.pan;
 				[3, 4, 5, 2, 1, 3, 2, 1] @=> int motif[];
 				scale[motif[i%8]] => freq;
 				1 => oct;
-				//gam.jublag(freq, amp, drt);
+				gam.jublag(freq, amp, drt);
 			} else if (currentInstr == "cal") {
 				//-0.2+lr => p.pan;
 				[2, 1, 3, 4, 5, 2, 1, 3] @=> int motif[];
 				scale[motif[i%8]] => freq;
 				1 => oct;
-				//gam.calun(freq, amp, drt);
+				gam.calun(freq, amp, drt);
 			} else if (currentInstr == "ugal") {
 				//0.2-lr => p.pan;
 				[2, 1, 3, 4, 5, 7, 8, 9, 6, 10] @=> int motif[];
 				scale[motif[i]] => freq;
 				2 => oct;
-				//gam.ugal(freq, amp*1.1, drt);
+				gam.ugal(freq, amp*1.1, drt);
 			} else if (currentInstr == "pem1") {
 				//0.5-lr => p.pan;
 				[10, 9, 8, 7, 6, 4, 5, 2, 1, 3] @=> int motif[];
 				scale[motif[i]] => freq;
 				2 => oct;
-				//gam.pemade(freq, amp, drt);
+				gam.pemade(freq, amp, drt);
 			} else if (currentInstr == "pem2") {
 				//0.6-lr => p.pan;
 				[7, 6, 4, 5, 2, 1, 3, 10, 9, 8] @=> int motif[];
 				scale[motif[i]] => freq;
 				2 => oct;
-				//gam.pemade(freq, amp, drt);
+				gam.pemade(freq, amp, drt);
 			} else if (currentInstr == "pem3") {
 				//-0.55+lr => p.pan;
 				[4, 5, 2, 1, 3, 10, 9, 8, 7, 6] @=> int motif[];
 				scale[motif[i]] => freq;
 				3 => oct;
-				//gam.pemade(freq, amp, drt);
+				gam.pemade(freq, amp, drt);
 			} else if (currentInstr == "pem4") {
 				//-0.65+lr => p.pan;
 				[1, 3, 10, 9, 8, 7, 6, 4, 5, 2] @=> int motif[];
 				scale[motif[i]] => freq;
 				3 => oct;
-				//gam.pemade(freq, amp, drt);
+				gam.pemade(freq, amp, drt);
 			}
 			
 			
@@ -109,7 +111,7 @@ fun void Phrase (int instr, int amp)
 			mNote => msg.data2;
 			amp => msg.data3;
 			
-			mout.send(msg);
+			//mout.send(msg);
 			
 			// the notes can repeat
 			if (Std.rand2(0, 4) != 0) i--;
@@ -118,11 +120,14 @@ fun void Phrase (int instr, int amp)
 				T*.5 => now;
 			} else if (Std.rand2(0, 127) == 0) {
 				T*2.0 => now;
-			} else T => now;
+            } else {
+                T => now;
+            }
+            
 			if (i == 9) 0 => i;
 			128 => msg.data1;
 			0 => msg.data3;
-			mout.send(msg);
+			//mout.send(msg);
 			// control velocities
 			if (prevAmp < 116) {
 				1 +=> prevAmp;

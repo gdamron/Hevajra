@@ -2,8 +2,8 @@
 .28::second => dur T;
 float freq;
 
-// set random octave
-Math.rand2(0, 3) => int oct;
+// set deom octave
+Math.random2(0, 3) => int oct;
 
 // synchronize to period (for on-the-fly synchronization)
 // disable to create a more 'cloud-like' texture
@@ -32,9 +32,9 @@ float Tscale;
 while( true )
 {    
     // random weights for creating variation 
-    Math.rand2(1, 6) => int weight1;
-    Math.rand2(1, 5) => int weight2;
-    Math.rand2(1, 10) => int weight3;
+    Math.random2(1, 6) => int weight1;
+    Math.random2(1, 5) => int weight2;
+    Math.random2(1, 10) => int weight3;
     // if counter == 1, first note is either C or D depending on weight1
     if (counter == 1) {
         if (weight1 < 2) {

@@ -30,8 +30,8 @@ fun void Phrase(int instr, float amp)
     int freq;
     
     // set random panning and amplitude
-    Math.rand2(0, 1) => int lr;
-    //Math.rand2f(0.05, 0.4) => float amp;
+    Math.random2(0, 1) => int lr;
+    //Math.random2f(0.05, 0.4) => float amp;
     
     // synchronize to period (for on-the-fly synchronization)
     // disable to create a more 'cloud-like' texture
@@ -53,9 +53,9 @@ fun void Phrase(int instr, float amp)
     while( true )
     {    
         // random weights for creating variation 
-        Math.rand2(1, 6) => int weight1;
-        Math.rand2(1, 5) => int weight2;
-        Math.rand2(1, 10) => int weight3;
+        Math.random2(1, 6) => int weight1;
+        Math.random2(1, 5) => int weight2;
+        Math.random2(1, 10) => int weight3;
         // if counter == 1, first note is either C or D depending on weight1
         if (counter == 1) {
             if (weight1 < 2) {
