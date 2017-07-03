@@ -204,7 +204,7 @@ public class GAMELAN
         aenv.set(1::ms, 1::ms, 1., 12::ms);
         aenv2.set(1::ms, 1::ms, 1., 2::ms);
         
-        makeNote(fund, amp, duration);
+        makeNote(fund, amp, duration) => now;
     }
 
     public void gong(float amp, float duration)
@@ -420,3 +420,4 @@ public class GAMELAN
         return noteT;
     }
 }
+
